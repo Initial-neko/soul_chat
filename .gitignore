@@ -30,6 +30,9 @@ ENV/
 # Environment variables
 .env
 
+# Cache
+cache/
+
 # IDE
 .idea/
 .vscode/

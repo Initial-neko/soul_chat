@@ -89,7 +89,6 @@ def create_demo():
 
     with gr.Blocks(
         title="Soul Chat - 情感陪伴聊天机器人",
-        theme=gr.themes.Soft(),
     ) as demo:
         # 标题
         gr.Markdown("""
@@ -108,7 +107,6 @@ def create_demo():
                 chatbot = gr.Chatbot(
                     label="对话历史",
                     height=400,
-                    bubble_full_width=False,
                 )
 
             with gr.Column(scale=1):
@@ -167,4 +165,5 @@ if __name__ == "__main__":
         server_port=7860,
         share=False,
         show_error=True,
+        theme=gr.themes.Soft(),
     )

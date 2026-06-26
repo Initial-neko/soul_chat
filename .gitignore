@@ -4,10 +4,12 @@ __pycache__/
 *$py.class
 *.so
 .Python
+reference_projects/
 build/
 develop-eggs/
 dist/
-downloads/
+downl
+oads/
 eggs/
 .eggs/
 lib/

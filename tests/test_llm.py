@@ -25,21 +25,21 @@ def test_llm_basic():
     """测试 LLM 基础对话功能"""
     api_key = os.getenv("DEEPSEEK_API_KEY")
     if not api_key:
-        print("⚠️ 跳过测试: 未设置 DEEPSEEK_API_KEY")
+        print("! 跳过测试: 未设置 DEEPSEEK_API_KEY")
         return
 
     client = LLMClient()
     response = client.chat("你好呀，今天过得怎么样？")
-    print(f"🤖 回复: {response}")
+    print(f"回复: {response}")
     assert response, "回复不应为空"
-    print("✓ LLM 基础对话测试通过")
+    print("OK LLM 基础对话测试通过")
 
 
 def test_llm_with_history():
     """测试 LLM 带历史记录的对话"""
     api_key = os.getenv("DEEPSEEK_API_KEY")
     if not api_key:
-        print("⚠️ 跳过测试: 未设置 DEEPSEEK_API_KEY")
+        print("! 跳过测试: 未设置 DEEPSEEK_API_KEY")
         return
 
     client = LLMClient()
@@ -47,27 +47,27 @@ def test_llm_with_history():
 
     # 第一轮对话
     response1 = client.chat("我今天工作有点累", memory.get_history())
-    print(f"🤖 第一轮回复: {response1}")
+    print(f"第一轮回复: {response1}")
     memory.add("user", "我今天工作有点累")
     memory.add("assistant", response1)
 
     # 第二轮对话
     response2 = client.chat("有什么放松的方式吗？", memory.get_history())
-    print(f"🤖 第二轮回复: {response2}")
-    print(f"📜 历史记录: {memory.get_history()}")
+    print(f"第二轮回复: {response2}")
+    print(f"历史记录: {memory.get_history()}")
     assert response2, "回复不应为空"
-    print("✓ LLM 带历史记录测试通过")
+    print("OK LLM 带历史记录测试通过")
 
 
 def test_llm_stream():
     """测试 LLM 流式输出"""
     api_key = os.getenv("DEEPSEEK_API_KEY")
     if not api_key:
-        print("⚠️ 跳过测试: 未设置 DEEPSEEK_API_KEY")
+        print("! 跳过测试: 未设置 DEEPSEEK_API_KEY")
         return
 
     client = LLMClient()
-    print("🤖 流式回复: ", end="")
+    print("流式回复: ", end="")
 
     full_response = ""
     for chunk in client.stream_chat("给我讲个笑话"):
@@ -76,7 +76,7 @@ def test_llm_stream():
     print()  # 换行
 
     assert full_response, "流式回复不应为空"
-    print("✓ LLM 流式输出测试通过")
+    print("OK LLM 流式输出测试通过")
 
 
 def test_memory():
@@ -92,17 +92,21 @@ def test_memory():
     memory.add("user", "我们去公园吧")
 
     history = memory.get_history()
-    print(f"📜 历史记录: {history}")
+    print(f"历史记录: {history}")
     assert len(history) == 3, f"窗口大小应为3，实际为 {len(history)}"
-    print("✓ 记忆模块测试通过")
+    print("OK 记忆模块测试通过")
 
 
 def test_factory():
     """测试工厂函数"""
     client = create_llm_client()
     assert client.model == "deepseek-chat"
-    print("✓ 工厂函数测试通过")
+    print("OK 工厂函数测试通过")
 
+
+import io
+import sys
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 if __name__ == "__main__":
     print("=" * 50)
@@ -116,5 +120,5 @@ if __name__ == "__main__":
     test_llm_stream()
 
     print("=" * 50)
-    print("所有测试通过！✅")
+    print("所有测试通过！")
     print("=" * 50)

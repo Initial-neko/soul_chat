@@ -127,7 +127,7 @@ feat: 完成 LLM 模块和记忆系统
 - [ ] 实现 STT 模块
 - [ ] 实现 TTS 模块
 - [ ] 实现 pipeline 串联
-- [ ] 实现 Gradio WebUI
+- [x] 实现 Gradio WebUI
 
 ---
 
@@ -139,10 +139,10 @@ feat: 完成 LLM 模块和记忆系统
 - [x] 创建 core/llm.py 并测试（DeepSeek）
 - [x] 创建 memory/window_memory.py
 - [x] 创建 prompts/system_prompt.txt
-- [ ] 创建 core/stt.py 并测试
-- [ ] 创建 core/tts.py 并测试
-- [ ] 创建 core/pipeline.py 串联三模块
-- [ ] 创建 app.py Gradio WebUI
+- [x] 创建 core/stt.py 并测试
+- [x] 创建 core/tts.py 并测试
+- [x] 创建 core/pipeline.py 串联三模块
+- [x] 创建 app.py Gradio WebUI
 
 ### Phase 2 — 体验优化
 

@@ -161,6 +161,7 @@ feat: 完成 LLM 模块和记忆系统
 
 ## 依赖管理（使用 uv）
 
+### 安装依赖
 ```bash
 # 添加依赖
 uv add openai edge-tts gradio python-dotenv soundfile numpy faster-whisper aiohttp
@@ -169,12 +170,39 @@ uv add openai edge-tts gradio python-dotenv soundfile numpy faster-whisper aioht
 uv sync
 ```
 
+### pyproject.toml 配置说明
+
+项目使用 `hatchling` 作为构建后端，需要在 `pyproject.toml` 中配置 `packages`：
+
+```toml
+[tool.hatch.build.targets.wheel]
+packages = ["core", "memory"]
+```
+
+这告诉 hatchling 要打包哪些目录。**注意：每次新增 Python 包目录时，需要更新此配置**。
+
+---
+
+## 运行与测试
+
+### 运行项目
+```bash
+uv run python app.py
+```
+
+### 运行测试（必须使用 uv）
+```bash
+uv run python tests/test_llm.py
+```
+
+**重要：必须使用 `uv run` 运行所有 Python 命令，不要直接调用 python**
+
 ---
 
 ## 注意事项
 
-1. **不要使用 pip** — 所有依赖管理使用 `uv` 命令
-2. **运行项目使用 `uv run`** — 例如 `uv run python app.py`
+1. **必须使用 uv run** — 所有 Python 命令（运行、测试）都必须使用 `uv run`，禁止直接调用 python
+2. **pyproject.toml packages 配置** — 每次新增 Python 包目录时，需要更新 `[tool.hatch.build.targets.wheel]` 配置
 3. **测试模块先单测** — 确认每个模块独立工作后再串联
 4. **.env 不提交 git** — 确保 .gitignore 包含 .env
 5. **每个阶段完成后立即提交 git** — 保持提交粒度适中
